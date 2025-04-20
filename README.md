@@ -1,4 +1,6 @@
 # Crack Identification and Damage Evolution Analysis in Fabric Composites: A FRPs-DSQE Based Statistical Approach
 
-# Prerequisities
-This implementation is built on MaskDINO(https://github.com/IDEA-Research/MaskDINO.git). Clone the official repository and install dependencies.
+# Dependencies
+This implementation is built on [![MaskDINO](https://img.shields.io/badge/Built_with-MaskDINO-FF6F00?logo=github)](https://github.com/IDEA-Research/MaskDINO). Clone the official repository and install dependencies.
+
+# Dataset Setup
