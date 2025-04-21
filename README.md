@@ -11,14 +11,14 @@ The fiber composite XCT images segmentation requires our proprietary fiber compo
 Following the network architecture implementation and dataset acquisition, co-locate the obtained dataset with the network architecture implementation within a unified project directory. The standardized hierarchical directory structure should be organized as follows:
 your_project_root/
 ├── MaskDINO/               
-│   ├── configs/
-│   ├── datasets/
-│       └── coco_fiber/
-│           ├── annotations/
-│           ├── train2017/
-│           └── test2017/
-│       └── cityscapes/
-│           ├── gtFine/
-│           ├── leftImg8bit/
-│   ├── train_net.py/
-│   └── ... 
+│   ├── configs/                  
+│   ├── datasets/                    
+│       └── coco_fiber/                        
+│           ├── annotations/                
+│           ├── train2017/               
+│           └── test2017/               
+│       └── cityscapes/                     
+│           ├── gtFine/                 
+│           ├── leftImg8bit/                 
+│   ├── train_net.py/                         
+│   └── ...                         
