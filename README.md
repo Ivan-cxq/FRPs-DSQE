@@ -27,6 +27,7 @@ your_project_root/
 └── ... 
 ```
 ## Dataset Adaptation and Library Modification
+### Cityscapes(semantic segmentation)
 To accommodate our private composite materials dataset, we adapt the Cityscapes semantic segmentation annotation protocol with domain-specific modifications. After establishing the network dependencies, perform the following critical file replacements:
 
 ```bash
@@ -40,7 +41,37 @@ Update Detectron2 Core:
 Overwrite detectron2-0.6-py3.9-win-amd64.egg using the patched version in:
 \Deep-UniSeg(Based on MaskDINO)\#modified library\detectron2_patch
 ```
+The annotation rules are as follows
+```bash
+labels = [
+    #       name                     id    trainId   category            catId     hasInstances   ignoreInEval   color
+    Label(  'unlabeled'            ,  0 ,      255 , 'void'            , 0       , False        , True         , (  0,  0,  0) ),
+    Label(  'air'                  ,  1 ,        0 , 'background'      , 1       , False        , False        , (128, 64,128) ),
+    Label(  'matrix'               ,  2 ,        1 , 'component'       , 2       , False        , False        , (244, 35,232) ),
+    Label(  'yarn_crack'           ,  3 ,        2 , 'fracture'        , 3       , False        , False        , ( 70, 70, 70) ),
+    Label(  'matrix_crack'         ,  4 ,        3 , 'fracture'        , 3       , False        , False        , (102,102,156) ),
+    Label(  'pore'                 ,  5 ,        4 , 'fracture'        , 3       , False        , False        , (190,153,153) ),
+    Label(  'weft'                 ,  6 ,        5 , 'component'       , 2       , True         , False        , (153,153,153) ),
+    Label(  'warp'                 ,  7 ,        6 , 'component'       , 2       , True         , False        , (210,210,210) ),
+]
+```
 
+### COCO2017(Instance segmentation)
+For instance segmentation tasks compliant with the COCO2017 standard, we implement custom dataset registration through official protocols by modifying maskdino/train_net.py. The registration methodology comprises the following steps:
+
+```bash
+from detectron2.data.datasets import register_coco_instances
+
+register_coco_instances("fiber_train", {},
+                        json_file=r"root\you_folder\MaskDINO_main\datasets\coco_fiber\annotations\instances_train2017.json",
+                        image_root=r"root\you_folder\MaskDINO_main\datasets\coco_fiber\train2017")
+register_coco_instances("fiber_val", {},
+                        r"root\you_folder\MaskDINO_main\datasets\coco_fiber\annotations\instances_val2017.json",
+                        r"root\you_folder\MaskDINO_main\datasets\coco_fiber\val2017")
+
+MetadataCatalog.get("fiber_train").thing_classes = ['weft', 'warp']
+MetadataCatalog.get("fiber_val").thing_classes = ['weft', 'warp']
+```
 
 
 
