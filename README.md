@@ -23,6 +23,11 @@ your_project_root/
 │   │       ├── gtFine/
 │   │       └── leftImg8bit/
 │   ├── train_net.py
-└── ...  # 其他文件
+└── ... 
 ```
-              
+
+
+
+
+
+
