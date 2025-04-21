@@ -7,7 +7,7 @@ This implementation is built on Mask DINO [![MaskDINO](https://img.shields.io/ba
 ## Dataset Preparation
 The fiber composite XCT images segmentation requires our proprietary fiber composite dataset. You can freely download the dataset from **[here](https://figshare.com/projects/Crack_Identification_and_Damage_Evolution_Analysis_in_Fabric_Composites_A_FRPs-DSQE_Based_Statistical_Approach/245780)** under a CC BY-NC 4.0 license.
 
-# Training
+# Training and Test
 ## Dataset Setup
 Following the network architecture implementation and dataset acquisition, co-locate the obtained dataset with the network architecture implementation within a unified project directory. The standardized hierarchical directory structure should be organized as follows:
 
@@ -39,7 +39,7 @@ with the modified version from:
 
 Update Detectron2 Core:
 Overwrite detectron2-0.6-py3.9-win-amd64.egg using the patched version in:
-\Deep-UniSeg(Based on MaskDINO)\#modified library\detectron2_patch
+\Deep-UniSeg(Based on MaskDINO)\#modified library\detectron2
 ```
 The annotation rules are as follows
 ```bash
@@ -73,10 +73,14 @@ MetadataCatalog.get("fiber_train").thing_classes = ['weft', 'warp']
 MetadataCatalog.get("fiber_val").thing_classes = ['weft', 'warp']
 ```
 
-
-
-
-
-
+## Training setting
+### COCO Instance segmentation Training
+```bash
+python train_net.py --num-gpus 1 --config-file .\configs\coco\instance-segmentation\swin\maskdino_R50_bs16_50ep_4s_dowsample1_2048.yaml MODEL.WEIGHTS .\checkpoint\swin_large_patch4_window12_384_22k.pkl
+```
+### Cityscapes Semantic segmentation Training
+```bash
+python train_net.py --num-gpus 1 --config-file .\configs\cityscapes\semantic-segmentation\maskdino_R50_bs16_90k_steplr.yaml
+```
 
 
