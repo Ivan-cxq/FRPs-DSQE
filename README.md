@@ -82,5 +82,48 @@ python train_net.py --num-gpus 1 --config-file .\configs\coco\instance-segmentat
 ```bash
 python train_net.py --num-gpus 1 --config-file .\configs\cityscapes\semantic-segmentation\maskdino_R50_bs16_90k_steplr.yaml
 ```
+## Test setting
+### COCO Instance segmentation Test
+```bash
+python .\demo\demo.py --config-file .\configs\coco\instance-segmentation\swin\maskdino_R50_bs16_50ep_4s_dowsample1_2048.yaml --input .\img\Sample_A_warp\*.png --output .\img_ins\QIU11\ --opts MODEL.WEIGHTS .\weights\model_final_ins.pth
+```
+### Cityscapes Semantic segmentation Test
+```bash
+python .\demo\demo.py --config-file .\configs\cityscapes\semantic-segmentation\maskdino_R50_bs16_90k_steplr.yaml --input .\img\1.png --output .\img\2.png --opts MODEL.WEIGHTS .\weights\model_final_sem.pth
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
